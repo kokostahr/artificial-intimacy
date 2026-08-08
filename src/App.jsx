@@ -119,7 +119,7 @@ function App() {
     }
 
     return (
-        <div className="app">
+        <div className={`app phase-${phase}`}>
             {/* Needs a better name, lol 
             Basic sections needed: header, chat area, input area*/}
             <div className="header">
