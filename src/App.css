@@ -1,0 +1,120 @@
+:root {
+ /* Meter */
+ --meter-text-color: #888;
+ --font-size: 0.75 rem;
+ --meter-bg-color: #333;
+ --meter-fill-color: #4ade80;
+}
+
+/* the avatar */
+.avatar {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.5s ease;
+}
+
+/* Meter */
+.meter-label {
+    font-size: var(--font-size);
+    color: var(--meter-text-color);
+    margin-bottom: 0.25rem;
+}
+
+.meter-bar {
+    height: 0.5rem;
+    background: var(--meter-bg-color);
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.meter-fill {
+    height: 100%;
+    background: var(--meter-fill-color);
+    transition: width 0.5s ease;
+}
+
+/* chat input section */
+.chat {
+    display: flex;
+    flex-direction: column;
+}
+
+input:disabled {
+    background: #1a1a24;
+    color: #444;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+button:disabled {
+    background: #222;
+    color: #555;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* message styling */
+.msg {
+    max-width: 75%;
+    padding: 0.75rem 1rem;
+    border-radius: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+}
+
+.msg.user {
+    align-self: flex-end;
+    background: #3b3b4f;
+    color: #e2e2e2;
+    border-bottom-right-radius: 0.25rem;
+}
+
+.msg.ai {
+    align-self: flex-start;
+    background: #1a1a24;
+    color: #a0a0b0;
+    border: 1px solid #2a2a35;
+    border-bottom-left-radius: 0.25rem;
+}
+
+/* reflective section */
+.reflection {
+    padding: 2rem;
+    text-align: center;
+    color: #888;
+    border-top: 1px solid #333;
+}
+
+.reflection p {
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.reflection .resources {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #222;
+    color: #666;
+    font-style: normal;
+}
+
+.reflection ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.5rem;
+}
+
+.reflection li {
+    margin: 0.25rem 0;
+}
+
+.reflection button {
+    margin-top: 2rem;
+    background: #222;
+    color: #888;
+    border: 1px solid #444;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
