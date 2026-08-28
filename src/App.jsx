@@ -123,23 +123,15 @@ function App() {
             {/* Needs a better name, lol 
             Basic sections needed: header, chat area, input area*/}
             <div className="header">
-                {/* adding the space where the avatar will be */}
+                <div className="bot-name">Loneli</div>
                 <div className="avatar">
                     {isThinking ? '💭' : phase === 'warm' ? '😊' :
-                        phase === 'breaking' ? '😐' : phase === 'hollow' ? '⚪' : '✦'}
+                    phase === 'breaking' ? '😐' : phase === 'hollow' ? '⚪' : '✦'}
                 </div>
                 <div className="meter">
-                    <div className="meter-label"> Connection</div>
+                    <div className="meter-label">Connection</div>
                     <div className="meter-bar">
-                        <div className="meter-fill"
-                            style={{
-                                width: `${meter}%`,
-                                background: phase === 'warm' ? '#4ade80' :
-                                    phase === 'breaking' ? '#fbbf24' : phase ===
-                                        'hollow' ? '#ef4444' : '#374151',
-                                transition: 'width 0.5s ease, background 0.5s ease'
-                            }}>
-                            </div>
+                        <div className="meter-fill" style={{ width: `${meter}%` }}></div>
                     </div>
                 </div>
             </div>
@@ -192,13 +184,23 @@ function App() {
 
             <div className="input-area">
                 <form onSubmit={handleSend}>
-                    <input
+                    <textarea
                         value={input}
-                        onChange={(e) => setInput(e.target.value)}
+                        onChange={(e) => {
+                        setInput(e.target.value);
+                        e.target.style.height = 'auto';
+                        e.target.style.height = e.target.scrollHeight + 'px';
+                        }}
+                        onKeyDown={(e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                            handleSend(e);
+                        }
+                        }}
                         placeholder={phase === 'reflection' ? "This space... can no longer receive you" :
-                            "Type here to say something..."
+                        "Type here to say something..."
                         }
                         disabled={phase === 'reflection'}
+                        rows={1}
                     />
                     <button type="submit" disabled={phase === 'reflection'}>Send</button>
                 </form>
