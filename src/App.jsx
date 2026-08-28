@@ -211,7 +211,7 @@ function App() {
                 {phase === 'reflection' && (
                     <div className="input-area">
                         {!showConfirm ? (
-                        <button onClick={() => setShowConfirm(true)}>Start Over?</button>
+                        <button className="start-over-btn" onClick={() => setShowConfirm(true)}>Start Over?</button>
                         ) : (
                         <div className="confirm-dialog">
                             <p>You really want to go through that again?</p>

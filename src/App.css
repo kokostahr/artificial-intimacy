@@ -5,59 +5,63 @@
     padding: 0;
 }
 
-html, body, #root {
+html, body {
      height: 100%;
+}
+
+#root {
+    min-height: 100%;
 }
 
 /* root */
 :root {
-  /* Meter */
-  --meter-text-color: #888;
-  --font-size-sm: 0.75rem;
-  --meter-bg-color: rgba(0,0,0,0.08);
+    /* Meter */
+    --meter-text-color: #888;
+    --font-size-sm: 0.75rem;
+    --meter-bg-color: rgba(0,0,0,0.08);
   
-  /* Warm Phase */
-  --bg-warm: #fff0e6;
-  --surface-warm: #ffffff;
-  --text-warm: #5c3d2e;
-  --accent-warm: #e07b39;
-  --user-bubble-warm: #e07b39;
-  --ai-bubble-warm: #ffffff;
-  --meter-warm: #e07b39;
+    /* Warm Phase */
+    --bg-warm: #fff0e6;
+    --surface-warm: #ffffff;
+    --text-warm: #5c3d2e;
+    --accent-warm: #e07b39;
+    --user-bubble-warm: #e07b39;
+    --ai-bubble-warm: #ffffff;
+    --meter-warm: #e07b39;
   
-  /* Breaking Phase */
-  --bg-breaking: #e8ddd4;
-  --surface-breaking: #f5f0ec;
-  --text-breaking: #7a6b5e;
-  --accent-breaking: #a89480;
-  --user-bubble-breaking: #c4b5a0;
-  --ai-bubble-breaking: #ebe5df;
-  --meter-breaking: #a89480;
+     /* Breaking Phase */
+    --bg-breaking: #e8ddd4;
+    --surface-breaking: #f5f0ec;
+    --text-breaking: #7a6b5e;
+    --accent-breaking: #a89480;
+    --user-bubble-breaking: #c4b5a0;
+    --ai-bubble-breaking: #ebe5df;
+    --meter-breaking: #a89480;
   
-  /* Hollow Phase */
-   --bg-hollow: #d0d0d0;
-  --surface-hollow: #e0e0e0;
-  --text-hollow: #666666;
-  --accent-hollow: #888888;
-  --user-bubble-hollow: #b8b8b8;
-  --ai-bubble-hollow: #cccccc;
-  --meter-hollow: #777777;
+     /* Hollow Phase */
+    --bg-hollow: #b0b0b0;
+    --surface-hollow: #c0c0c0;
+    --text-hollow: #4a4a4a;
+    --accent-hollow: #666666;
+    --user-bubble-hollow: #999999;
+    --ai-bubble-hollow: #aaaaaa;
+    --meter-hollow: #555555;
   
-  /* Reflection */
-  --bg-reflection: #1a1a1a;
-  --surface-reflection: #222222;
-  --text-reflection: #777777;
-  --accent-reflection: #444444;
-  --user-bubble-reflection: #333333;
-  --ai-bubble-reflection: #2a2a2a;
-  --meter-reflection: #333333;
+    /* Reflection */
+    --bg-reflection: #2d2d35;
+    --surface-reflection: #3a3a45;
+    --text-reflection: #bbbbbb;
+    --accent-reflection: #777777;
+    --user-bubble-reflection: #4a4a55;
+    --ai-bubble-reflection: #3a3a45;
+    --meter-reflection: #555555;
   
-  /* Shared */
-  --radius: 1.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 2rem;
-  --transition-speed: 0.6s;
+    /* Shared */
+    --radius: 1.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    --transition-speed: 0.6s;
 }
 
 /* app display */
@@ -65,9 +69,8 @@ html, body, #root {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    max-width: 56.25rem;
-    padding: 0 2rem;
-    margin: 0 auto;
+    width: 100%;
+    padding: 0 4rem;
     background: var(--bg-warm);
     color: var(--text-warm);
     transition: background var(--transition-speed) ease,
@@ -225,7 +228,7 @@ html, body, #root {
 
 /* Textarea instead of input */
 textarea::-webkit-scrollbar {
-    y: none;
+    display: none;
 }
 
 textarea {
@@ -295,12 +298,7 @@ button[type="submit"]:disabled {
     padding: var(--spacing-lg) var(--spacing-md);
     text-align: center;
     animation: fadeIn 0.8s ease;
-    color: #999;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    color: #bbb;
 }
 
 .reflection p {
@@ -311,20 +309,21 @@ button[type="submit"]:disabled {
     max-width: 25rem;
     margin-left: auto;
     margin-right: auto;
-    color: #aaa;
+    color: #ddd;
 }
 
 .reflection .resources {
     margin-top: var(--spacing-lg);
     padding-top: var(--spacing-md);
-    border-top: 0.0625rem solid rgba(0,0,0,0.06);
+    border-top: 0.0625rem solid rgba(255,255,255,0.08);
     font-style: normal;
-    color: #888;
+    color: #aaa;
 }
 
 .reflection .resources p {
     font-style: italic;
     font-size: 0.95rem;
+    color: #ccc;
 }
 
 .reflection small {
@@ -333,7 +332,7 @@ button[type="submit"]:disabled {
     font-size: 0.8rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--text-hollow);
+    color: #888;
 }
 
 .reflection ul {
@@ -345,43 +344,59 @@ button[type="submit"]:disabled {
 .reflection li {
     margin: 0.5rem 0;
     font-size: 0.9rem;
+    color: #bbb;
 }
 
-.reflection button {
+/* Confirmation box, after 'start over' is clicked */
+.start-over-btn {
     margin-top: var(--spacing-lg);
     background: transparent;
-    color: var(--text-hollow);
-    border: 0.0625rem solid rgba(0,0,0,0.12);
+    color: #ccc;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 1rem 3rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+}
+
+.start-over-btn:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.35);
+}
+
+/* Confirm dialog buttons */
+.confirm-dialog button {
+    margin: 0 0.5rem;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #bbb;
     padding: 0.75rem 2rem;
     border-radius: var(--radius);
     cursor: pointer;
     font-size: 0.9rem;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
-.reflection button:hover {
-    background: rgba(0,0,0,0.04);
-    border-color: rgba(0,0,0,0.2);
+.confirm-dialog button:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.35);
 }
 
-/* Confirmation box, after 'start over' is clicked */
-.confirm-dialog {
-    text-align: center;
-    padding: 1rem;
+/* Reflection phase overrides for input area */
+.app.phase-reflection textarea {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.08);
+  color: #666;
 }
 
-.confirm-dialog p {
-    font-style: italic;
-    color: #888;
-    margin-bottom: 1rem;
+.app.phase-reflection textarea::placeholder {
+  color: rgba(255,255,255,0.25);
 }
 
-.confirm-dialog button {
-    margin: 0 0.5rem;
-    background: transparent;
-    border: 0.07rem solid #444;
-    color: #888;
-    padding: 0.5rem 1.5rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
+.app.phase-reflection button[type="submit"]:disabled {
+  background: #444;
+  color: #666;
+  opacity: 1;
 }
