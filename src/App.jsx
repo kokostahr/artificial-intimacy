@@ -39,12 +39,15 @@ function App() {
     const [input, setInput] = useState('')
     //making barebones relationship meter. starting it with a bit of smth so it doesnt feel barren
     const [meter, setMeter] = useState(10)
+    //making a barebones confirmation message when the user clicks "start over" in the reflection phase
+    const [showConfirm, setShowConfirm] = useState(false);
 
     //Adding different phases\states for the ai
     const [phase, setPhase] = useState('warm'); //tracks which phase the AI is in
     const [exchangeCount, setExchangeCount] = useState(0); //counts how many time the user has sent a msg. will use the number to trigger state changes
     //adding the thinking state
     const [isThinking, setIsThinking] = useState(false);
+
 
     //
     useEffect(() => {
@@ -204,9 +207,20 @@ function App() {
                     />
                     <button type="submit" disabled={phase === 'reflection'}>Send</button>
                 </form>
-                {phase === 'reflection' &&
-                    <button onClick={() =>
-                        window.location.reload()}> Start Over? </button> }
+                {/* a very long button that shows a textbox that asks the user if they really want to experince the convo again */}
+                {phase === 'reflection' && (
+                    <div className="input-area">
+                        {!showConfirm ? (
+                        <button onClick={() => setShowConfirm(true)}>Start Over?</button>
+                        ) : (
+                        <div className="confirm-dialog">
+                            <p>You really want to go through that again?</p>
+                            <button onClick={() => window.location.reload()}>...yes... i do...</button>
+                            <button onClick={() => setShowConfirm(false)}>no...</button>
+                        </div>
+                        )}
+                    </div>
+                )}
             </div>
 
                 

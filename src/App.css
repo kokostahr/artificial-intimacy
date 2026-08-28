@@ -1,12 +1,12 @@
 /* page reset */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html, body, #root {
-  height: 100%;
+     height: 100%;
 }
 
 /* root */
@@ -17,37 +17,40 @@ html, body, #root {
   --meter-bg-color: rgba(0,0,0,0.08);
   
   /* Warm Phase */
-  --bg-warm: #faf3ee;
+  --bg-warm: #fff0e6;
   --surface-warm: #ffffff;
-  --text-warm: #4a3f35;
-  --accent-warm: #e8a87c;
-  --user-bubble-warm: #e8a87c;
+  --text-warm: #5c3d2e;
+  --accent-warm: #e07b39;
+  --user-bubble-warm: #e07b39;
   --ai-bubble-warm: #ffffff;
-  --meter-warm: #e8a87c;
+  --meter-warm: #e07b39;
   
   /* Breaking Phase */
-  --bg-breaking: #f0ece8;
-  --surface-breaking: #f5f2ef;
-  --text-breaking: #6b5f55;
-  --accent-breaking: #c4b5a5;
-  --user-bubble-breaking: #d4c5b0;
-  --ai-bubble-breaking: #e8e4e0;
-  --meter-breaking: #c4b5a5;
+  --bg-breaking: #e8ddd4;
+  --surface-breaking: #f5f0ec;
+  --text-breaking: #7a6b5e;
+  --accent-breaking: #a89480;
+  --user-bubble-breaking: #c4b5a0;
+  --ai-bubble-breaking: #ebe5df;
+  --meter-breaking: #a89480;
   
   /* Hollow Phase */
-  --bg-hollow: #e8e8e8;
-  --surface-hollow: #f0f0f0;
-  --text-hollow: #888888;
-  --accent-hollow: #aaaaaa;
-  --user-bubble-hollow: #d0d0d0;
-  --ai-bubble-hollow: #e0e0e0;
-  --meter-hollow: #999999;
+   --bg-hollow: #d0d0d0;
+  --surface-hollow: #e0e0e0;
+  --text-hollow: #666666;
+  --accent-hollow: #888888;
+  --user-bubble-hollow: #b8b8b8;
+  --ai-bubble-hollow: #cccccc;
+  --meter-hollow: #777777;
   
   /* Reflection */
-  --bg-reflection: #f5f5f5;
-  --surface-reflection: #fafafa;
-  --text-reflection: #999999;
-  --accent-reflection: #cccccc;
+  --bg-reflection: #1a1a1a;
+  --surface-reflection: #222222;
+  --text-reflection: #777777;
+  --accent-reflection: #444444;
+  --user-bubble-reflection: #333333;
+  --ai-bubble-reflection: #2a2a2a;
+  --meter-reflection: #333333;
   
   /* Shared */
   --radius: 1.25rem;
@@ -59,48 +62,49 @@ html, body, #root {
 
 /* app display */
 .app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  max-width: 600px;
-  margin: 0 auto;
-  background: var(--bg-warm);
-  color: var(--text-warm);
-  transition: background var(--transition-speed) ease,
-              color var(--transition-speed) ease;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: 56.25rem;
+    padding: 0 2rem;
+    margin: 0 auto;
+    background: var(--bg-warm);
+    color: var(--text-warm);
+    transition: background var(--transition-speed) ease,
+                color var(--transition-speed) ease;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .app.phase-breaking {
-  background: var(--bg-breaking);
-  color: var(--text-breaking);
+    background: var(--bg-breaking);
+    color: var(--text-breaking);
 }
 
 .app.phase-hollow {
-  background: var(--bg-hollow);
-  color: var(--text-hollow);
+    background: var(--bg-hollow);
+    color: var(--text-hollow);
 }
 
 .app.phase-reflection {
-  background: var(--bg-reflection);
-  color: var(--text-reflection);
+    background: var(--bg-reflection);
+    color: var(--text-reflection);
 }
 
 /* header */
 .header {
-  padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
-  text-align: center;
-  flex-shrink: 0;
+    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+    text-align: center;
+    flex-shrink: 0;
 }
 
 .bot-name {
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent-warm);
-  margin-bottom: var(--spacing-sm);
-  transition: color var(--transition-speed) ease;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: var(--spacing-sm);
+    transition: color var(--transition-speed) ease;
 }
 
 .app.phase-breaking .bot-name { 
@@ -114,26 +118,26 @@ html, body, #root {
 }
 
 .avatar {
-  font-size: 3rem;
-  margin-bottom: var(--spacing-sm);
-  transition: all 0.5s ease;
-  line-height: 1;
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+    transition: all 0.5s ease;
+    line-height: 1;
 }
 
 .meter-label {
-  font-size: var(--font-size-sm);
-  color: var(--meter-text-color);
-  margin-bottom: 0.25rem;
-  letter-spacing: 0.05em;
+    font-size: var(--font-size-sm);
+    color: var(--meter-text-color);
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.05em;
 }
 
 .meter-bar {
-  height: 0.4rem;
-  background: var(--meter-bg-color);
-  border-radius: 0.2rem;
-  overflow: hidden;
-  max-width: 180px;
-  margin: 0 auto;
+    height: 0.4rem;
+    background: var(--meter-bg-color);
+    border-radius: 0.2rem;
+    overflow: hidden;
+    max-width: 180px;
+    margin: 0 auto;
 }
 
 .meter-fill {
@@ -149,48 +153,50 @@ html, body, #root {
 
 /* chat area */
 .chat {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  overflow-y: auto;
-  padding: var(--spacing-md);
-  gap: var(--spacing-sm);
-  min-height: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow-y: auto;
+    padding: var(--spacing-md);
+    gap: var(--spacing-sm);
+    min-height: 0;
+    overflow-y: auto;
+    scroll-behavior: smooth;
 }
 
 /* messages */
 .msg {
-  max-width: 78%;
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius);
-  font-size: 0.95rem;
-  line-height: 1.5;
-  word-wrap: break-word;
-  animation: messageIn 0.35s ease;
+    max-width: 78%;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+    animation: messageIn 0.35s ease;
 }
 
 @keyframes messageIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .msg.user {
-  align-self: flex-end;
-  background: var(--user-bubble-warm);
-  color: #fff;
-  border-bottom-right-radius: 0.35rem;
-  transition: background var(--transition-speed) ease;
+    align-self: flex-end;
+    background: var(--user-bubble-warm);
+    color: #fff;
+    border-bottom-right-radius: 0.35rem;
+    transition: background var(--transition-speed) ease;
 }
 
 .msg.ai {
-  align-self: flex-start;
-  background: var(--ai-bubble-warm);
-  color: var(--text-warm);
-  border: 1px solid rgba(0,0,0,0.04);
-  border-bottom-left-radius: 0.35rem;
-  transition: background var(--transition-speed) ease,
-              color var(--transition-speed) ease;
+    align-self: flex-start;
+    background: var(--ai-bubble-warm);
+    color: var(--text-warm);
+    border: 1px solid rgba(0,0,0,0.04);
+    border-bottom-left-radius: 0.35rem;
+    transition: background var(--transition-speed) ease,
+                color var(--transition-speed) ease;
 }
 
 /* msg colour relative to phase */
@@ -205,73 +211,80 @@ html, body, #root {
 
 /* input\texbox area */
 .input-area {
-  padding: var(--spacing-md);
-  border-top: 1px solid rgba(0,0,0,0.04);
-  flex-shrink: 0;
-  background: inherit;
+    padding: var(--spacing-md);
+    border-top: 1px solid rgba(0,0,0,0.04);
+    flex-shrink: 0;
+    background: inherit;
 }
 
 .input-area form {
-  display: flex;
-  gap: var(--spacing-sm);
-  align-items: flex-end;
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: flex-end;
 }
 
 /* Textarea instead of input */
+textarea::-webkit-scrollbar {
+    y: none;
+}
+
 textarea {
-  flex: 1;
-  background: rgba(255,255,255,0.7);
-  border: 1px solid rgba(0,0,0,0.06);
-  color: var(--text-warm);
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius);
-  outline: none;
-  font-family: inherit;
-  font-size: 0.95rem;
-  resize: none;
-  min-height: 44px;
-  max-height: 120px;
-  line-height: 1.4;
-  transition: background 0.2s ease, border-color 0.2s ease;
+    flex: 1;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(0,0,0,0.06);
+    color: var(--text-warm);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    outline: none;
+    font-family: inherit;
+    font-size: 0.95rem;
+    resize: none;
+    min-height: 2.75rem;
+    max-height: 7.5rem;
+    line-height: 1.4;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 textarea:focus {
-  border-color: var(--accent-warm);
-  background: rgba(255,255,255,0.95);
+    border-color: var(--accent-warm);
+    background: rgba(255,255,255,0.95);
 }
 
 textarea::placeholder {
-  color: rgba(0,0,0,0.3);
+    color: rgba(0,0,0,0.3);
 }
 
 textarea:disabled {
-  background: rgba(0,0,0,0.02);
-  color: rgba(0,0,0,0.2);
-  cursor: not-allowed;
+    background: rgba(0,0,0,0.02);
+    color: rgba(0,0,0,0.2);
+    cursor: not-allowed;
 }
 
 button[type="submit"] {
-  background: var(--accent-warm);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.25rem;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 0.9rem;
-  transition: background var(--transition-speed) ease, filter 0.2s ease;
-  height: 44px;
+    background: var(--accent-warm);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background var(--transition-speed) ease, filter 0.2s ease;
+    height: 2.75rem;
 }
 
 button[type="submit"]:hover:not(:disabled) {
-  filter: brightness(1.08);
+    filter: brightness(1.08);
 }
 
 button[type="submit"]:disabled {
-  background: #ccc;
-  color: #888;
-  cursor: not-allowed;
-  opacity: 0.6;
+    background: #ccc;
+    color: #888;
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 .app.phase-breaking button[type="submit"] { background: var(--accent-breaking); }
@@ -279,71 +292,96 @@ button[type="submit"]:disabled {
 
 /* reflection */
 .reflection {
-  padding: var(--spacing-lg) var(--spacing-md);
-  text-align: center;
-  animation: fadeIn 0.8s ease;
+    padding: var(--spacing-lg) var(--spacing-md);
+    text-align: center;
+    animation: fadeIn 0.8s ease;
+    color: #999;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .reflection p {
-  margin-bottom: var(--spacing-md);
-  font-style: italic;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 25rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: #aaa;
 }
 
 .reflection .resources {
-  margin-top: var(--spacing-lg);
-  padding-top: var(--spacing-md);
-  border-top: 1px solid rgba(0,0,0,0.06);
-  font-style: normal;
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 0.0625rem solid rgba(0,0,0,0.06);
+    font-style: normal;
+    color: #888;
 }
 
 .reflection .resources p {
-  font-style: italic;
-  font-size: 0.95rem;
+    font-style: italic;
+    font-size: 0.95rem;
 }
 
 .reflection small {
-  display: block;
-  margin-top: var(--spacing-md);
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-hollow);
+    display: block;
+    margin-top: var(--spacing-md);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-hollow);
 }
 
 .reflection ul {
-  list-style: none;
-  padding: 0;
-  margin-top: var(--spacing-sm);
+    list-style: none;
+    padding: 0;
+    margin-top: var(--spacing-sm);
 }
 
 .reflection li {
-  margin: 0.5rem 0;
-  font-size: 0.9rem;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
 }
 
 .reflection button {
-  margin-top: var(--spacing-lg);
-  background: transparent;
-  color: var(--text-hollow);
-  border: 1px solid rgba(0,0,0,0.12);
-  padding: 0.75rem 2rem;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
+    margin-top: var(--spacing-lg);
+    background: transparent;
+    color: var(--text-hollow);
+    border: 0.0625rem solid rgba(0,0,0,0.12);
+    padding: 0.75rem 2rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
 }
 
 .reflection button:hover {
-  background: rgba(0,0,0,0.04);
-  border-color: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.04);
+    border-color: rgba(0,0,0,0.2);
+}
+
+/* Confirmation box, after 'start over' is clicked */
+.confirm-dialog {
+    text-align: center;
+    padding: 1rem;
+}
+
+.confirm-dialog p {
+    font-style: italic;
+    color: #888;
+    margin-bottom: 1rem;
+}
+
+.confirm-dialog button {
+    margin: 0 0.5rem;
+    background: transparent;
+    border: 0.07rem solid #444;
+    color: #888;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
 }
