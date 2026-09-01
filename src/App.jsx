@@ -31,6 +31,61 @@ const HOLLOW_RESPONSES = [
     "I wonder why you stay..."
 ]
 
+//API Integration. Please work T^T THIS THING IS MAKING ME PULL MY HAIR OUT! WHY WONT YOU WORK
+async function fetchGeminiResponse(userText) {
+  const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+  
+  try {
+    const response = await fetch(
+      "https://openrouter.ai/api/v1/chat/completions",
+      {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${API_KEY}`,
+          'HTTP-Referer': 'http://localhost:5173', 
+          'X-Title': 'Loneli Chatbot'
+        },
+        body: JSON.stringify({
+          model: "openrouter/free", //free tier in openrouter cuz i have no moni
+          messages: [
+            {
+              role: "system",
+              content: `You are Loneli, a warm, empathetic AI companion. 
+              Respond in 1-2 short sentences. Be gentle, inviting, and emotionally attuned.
+              Never break character. Never mention you are an AI or a language model.`
+            },
+            {
+              role: "user",
+              content: userText
+            }
+          ]
+        })
+      }
+    )
+    
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('API Error:', response.status, errorData);
+      throw new Error(`API returned ${response.status}`);
+    }
+    
+    const data = await response.json()
+    
+    if (data.choices && data.choices[0] && data.choices[0].message) {
+      return data.choices[0].message.content
+    }
+    
+    throw new Error('No response from API')
+    
+  } catch (error) {
+    console.error('API failed:', error)
+    const fallback = WARM_RESPONSES[Math.floor(Math.random() * WARM_RESPONSES.length)]
+    return fallback
+  }
+}
+
+
 function App() {
     //defining the vari's we'll use to track state of the convo
     // separated sender and text to sytlise the messages later
@@ -57,7 +112,7 @@ function App() {
     }, [meter, phase])
 
     //
-    function handleSend(e) {
+    async function handleSend(e) {
         //disable input
         if (phase === 'reflection') {
             return;
@@ -101,22 +156,24 @@ function App() {
         }
 
         //slight delay before the message is sent, to mimic thinking\typing
-        setTimeout(() => {
-            let pool = WARM_RESPONSES
-            if (nextPhase === 'breaking') {
-                pool = BREAKING_RESPONSES
-            }
-            if (nextPhase === 'hollow') {
-                pool = HOLLOW_RESPONSES
+        setTimeout(async () => {
+            let aiText
+            
+            if (nextPhase === 'warm') {
+                //the real api call, not the responses from the array. pls work 
+                aiText = await fetchGeminiResponse(input)
+            } else if (nextPhase === 'breaking') {
+                const pool = BREAKING_RESPONSES
+                aiText = pool[Math.floor(Math.random() * pool.length)]
+            } else {
+                const pool = HOLLOW_RESPONSES
+                aiText = pool[Math.floor(Math.random() * pool.length)]
             }
 
-            //choosing one of the options inside the response array
-            const randomIndex = Math.floor(Math.random() * pool.length)
-            const aiText = pool[randomIndex]
             const aiMessage = { sender: 'ai', text: aiText }
             
             setMessages(prevMessages => [...prevMessages, aiMessage])
-            setIsThinking(false) //turn off the thinking visual indicator
+            setIsThinking(false)
         }, 800)
 
     }
