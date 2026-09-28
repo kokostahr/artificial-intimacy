@@ -33,7 +33,7 @@ const HOLLOW_RESPONSES = [
 
 //API Integration. Please work T^T THIS THING IS MAKING ME PULL MY HAIR OUT! WHY WONT YOU WORK
 async function fetchGeminiResponse(userText) {
-  const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+  const API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY;
   
   try {
     const response = await fetch(
