@@ -1,18 +1,54 @@
 # artificial-intimacy
+Oct 26 Submission Update:
 
-Sept 2 Submission Update:
-Please create a .env file, using the same variable name shown in the .env.example file.
-Then hook it up with an OPENROUTER API key. I apologise for the confusion with the variable name
-and the required key. I will change it in the next iteration of the project.
+# Loneli: Critical Interface Design for Simulated Empathy
 
-The application consists of four interaction phases:
+**Loneli** is an experimental web application built as part of an Honours research project. The project explores **critical interaction design**, specifically how intentional UI/UX choices structure artificial sympathy, and how exposing an AI's technical boundaries reveals the limits of simulated connection.
 
-1. Warm (shown on startup)
-2. Breaking
-3. Hollow
-4. Reflection
+Rather than positioning AI as an endlessly supportive companion, Loneli uses a 4-phase behavioral progression to demonstrate that algorithmic empathy is purely a pattern recognition system (a "stochastic parrot") that ultimately breaks down.
 
-Only the Warm phase uses generative AI. The Breaking and Hollow phases use pre-cooked/predefined responses to provide controlled interaction and maintain the intended critical design experience.
-Thank You.
+---˚˖𓍢ִ໋❀
 
-A project developed alongside a research paper exploring artificial intimacy, fragmented human connection, and the limitations of simulated empathy.  The chatbot is intentionally designed to demonstrate that artificial systems cannot replace genuine human connection. Rather than functioning as an endlessly available AI companion, it eventually reaches its limits and redirects users toward ways of connecting with real people through their interests, communities, and shared experiences.  Instead of asking how AI can replace human connection, this project asks: **how can AI help bring people back to one another?**
+## 🎭 Interaction Phases
+
+1. **Warm Phase (Generative AI):** 
+   - Uses real-time generative responses via the OpenRouter API.
+   - Features a high connection meter, warm color palette, and empathetic dialogue.
+   - Maintains real-time conversation context across turns.
+
+2. **Breaking Phase (Scripted State):** 
+   - Transitions to a colder visual tone and non-repeating predefined responses.
+   - Simulates the initial degradation of artificial empathy.
+
+3. **Hollow Phase (System Exhaustion):** 
+   - Connection meter drains to zero.
+   - Displays detached, repetitive, or mechanical responses highlighting the lack of genuine comprehension.
+
+4. **Reflection Phase (Terminal State):** 
+   - Inputs are disabled and interaction concludes.
+   - Prompts the user to reflect on the nature of artificial connection vs. human reality.
+   - Resetting the session clears all conversation state, emphasising the ephemeral nature of the interface.
+
+---˚˖𓍢ִ໋❀
+
+## 🚀 Setup & Local Installation
+
+Follow these steps to run the application locally:
+
+1. Clone the repository & Install dependencies
+2. Use the provided .env file 
+3. Chat with Loneli!
+
+
+---˚˖𓍢ִ໋❀
+
+## 🛠️ Tech Stack
+
+- **Framework:** React in Vite
+- **API Provider:** OpenRouter API (`openrouter/free`)
+- **Styling:** CSS Custom Properties (Dynamic Phase Themes)
+
+
+
+
+

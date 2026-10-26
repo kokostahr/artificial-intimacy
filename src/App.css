@@ -1,398 +1,544 @@
 /* page reset */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html, body {
-     height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 #root {
-    min-height: 100%;
+  min-height: 100%;
 }
 
 /* root */
 :root {
-    /* Meter */
-    --meter-text-color: #888;
-    --font-size-sm: 0.75rem;
-    --meter-bg-color: rgba(0,0,0,0.08);
-  
-    /* Warm Phase */
-    --bg-warm: #fff0e6;
-    --surface-warm: #ffffff;
-    --text-warm: #5c3d2e;
-    --accent-warm: #e07b39;
-    --user-bubble-warm: #e07b39;
-    --ai-bubble-warm: #ffffff;
-    --meter-warm: #e07b39;
-  
-     /* Breaking Phase */
-    --bg-breaking: #e8ddd4;
-    --surface-breaking: #f5f0ec;
-    --text-breaking: #7a6b5e;
-    --accent-breaking: #a89480;
-    --user-bubble-breaking: #c4b5a0;
-    --ai-bubble-breaking: #ebe5df;
-    --meter-breaking: #a89480;
-  
-     /* Hollow Phase */
-    --bg-hollow: #b0b0b0;
-    --surface-hollow: #c0c0c0;
-    --text-hollow: #4a4a4a;
-    --accent-hollow: #666666;
-    --user-bubble-hollow: #999999;
-    --ai-bubble-hollow: #aaaaaa;
-    --meter-hollow: #555555;
-  
-    /* Reflection */
-    --bg-reflection: #2d2d35;
-    --surface-reflection: #3a3a45;
-    --text-reflection: #bbbbbb;
-    --accent-reflection: #777777;
-    --user-bubble-reflection: #4a4a55;
-    --ai-bubble-reflection: #3a3a45;
-    --meter-reflection: #555555;
-  
-    /* Shared */
-    --radius: 1.25rem;
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 2rem;
-    --transition-speed: 0.6s;
+  /* Meter */
+  --meter-text-color: #888;
+  --font-size-sm: 0.75rem;
+  --meter-bg-color: rgba(0, 0, 0, 0.08);
+
+  /* Warm Phase */
+  --bg-warm: #fff0e6;
+  --surface-warm: #ffffff;
+  --text-warm: #5c3d2e;
+  --accent-warm: #e07b39;
+  --user-bubble-warm: #e07b39;
+  --ai-bubble-warm: #ffffff;
+  --meter-warm: #e07b39;
+
+  /* Breaking Phase */
+  --bg-breaking: #e8ddd4;
+  --surface-breaking: #f5f0ec;
+  --text-breaking: #7a6b5e;
+  --accent-breaking: #a89480;
+  --user-bubble-breaking: #c4b5a0;
+  --ai-bubble-breaking: #ebe5df;
+  --meter-breaking: #a89480;
+
+  /* Hollow Phase */
+  --bg-hollow: #b0b0b0;
+  --surface-hollow: #c0c0c0;
+  --text-hollow: #4a4a4a;
+  --accent-hollow: #666666;
+  --user-bubble-hollow: #999999;
+  --ai-bubble-hollow: #aaaaaa;
+  --meter-hollow: #555555;
+
+  /* Reflection */
+  --bg-reflection: #2d2d35;
+  --surface-reflection: #3a3a45;
+  --text-reflection: #bbbbbb;
+  --accent-reflection: #777777;
+  --user-bubble-reflection: #4a4a55;
+  --ai-bubble-reflection: #3a3a45;
+  --meter-reflection: #555555;
+
+  /* Shared */
+  --radius: 1.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --transition-speed: 0.6s;
 }
 
-/* app display */
+/* app display - LOCKED to viewport so header and input never scroll away */
 .app {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 0 4rem;
-    background: var(--bg-warm);
-    color: var(--text-warm);
-    transition: background var(--transition-speed) ease,
-                color var(--transition-speed) ease;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 4rem;
+  background: var(--bg-warm);
+  color: var(--text-warm);
+  overflow: hidden; /* prevents outer page scrolling */
+  transition:
+    background var(--transition-speed) ease,
+    color var(--transition-speed) ease;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
 
 .app.phase-breaking {
-    background: var(--bg-breaking);
-    color: var(--text-breaking);
+  background: var(--bg-breaking);
+  color: var(--text-breaking);
 }
 
 .app.phase-hollow {
-    background: var(--bg-hollow);
-    color: var(--text-hollow);
+  background: var(--bg-hollow);
+  color: var(--text-hollow);
 }
 
 .app.phase-reflection {
-    background: var(--bg-reflection);
-    color: var(--text-reflection);
+  background: var(--bg-reflection);
+  color: var(--text-reflection);
 }
 
-/* header */
+/* header - let it adjust naturally to content without crowding */
 .header {
-    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
-    text-align: center;
-    flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem 0.25rem;
+  text-align: center;
+  flex-shrink: 0;
 }
 
 .bot-name {
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent-warm);
-    margin-bottom: var(--spacing-sm);
-    transition: color var(--transition-speed) ease;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  margin-bottom: var(--spacing-sm);
+  transition: color var(--transition-speed) ease;
 }
 
-.app.phase-breaking .bot-name { 
-    color: var(--accent-breaking); 
+.app.phase-breaking .bot-name {
+  color: var(--accent-breaking);
 }
-.app.phase-hollow .bot-name { 
-    color: var(--accent-hollow); 
+.app.phase-hollow .bot-name {
+  color: var(--accent-hollow);
 }
-.app.phase-reflection .bot-name { 
-    color: var(--accent-reflection); 
+.app.phase-reflection .bot-name {
+  color: var(--accent-reflection);
 }
+
+/* Adding the parts for the animated gifs */
 
 .avatar {
-    font-size: 3rem;
-    margin-bottom: var(--spacing-sm);
-    transition: all 0.5s ease;
-    line-height: 1;
+  width: 120px;
+  height: 120px;
+  margin: 0.25rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  image-rendering: pixelated; /* sharpens pixel edges for my crunchy gifs */
+  filter: contrast(110%) saturate(90%);
+}
+
+/* Container forces a nice wide track */
+.meter-container {
+  width: 260px;
+  max-width: 100%;
+  margin: 0.25rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .meter-label {
-    font-size: var(--font-size-sm);
-    color: var(--meter-text-color);
-    margin-bottom: 0.25rem;
-    letter-spacing: 0.05em;
+  font-size: var(--font-size-sm);
+  color: var(--meter-text-color);
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.05em;
 }
 
 .meter-bar {
-    height: 0.4rem;
-    background: var(--meter-bg-color);
-    border-radius: 0.2rem;
-    overflow: hidden;
-    max-width: 180px;
-    margin: 0 auto;
+  height: 0.5rem;
+  background: var(--meter-bg-color);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  width: 100%; /* Now it stretches to fill the 260px container! */
 }
 
 .meter-fill {
   height: 100%;
-  transition: width 0.5s ease, background 0.5s ease;
+  transition:
+    width 0.5s ease,
+    background 0.5s ease;
 }
 
 /* meter colour relative to app phase */
-.app.phase-warm .meter-fill { background: var(--meter-warm); }
-.app.phase-breaking .meter-fill { background: var(--meter-breaking); }
-.app.phase-hollow .meter-fill { background: var(--meter-hollow); }
-.app.phase-reflection .meter-fill { background: var(--accent-reflection); }
+.app.phase-warm .meter-fill {
+  background: var(--meter-warm);
+}
+.app.phase-breaking .meter-fill {
+  background: var(--meter-breaking);
+}
+.app.phase-hollow .meter-fill {
+  background: var(--meter-hollow);
+}
+.app.phase-reflection .meter-fill {
+  background: var(--accent-reflection);
+}
 
-/* chat area */
+/* Warning badge fixed inside header */
+.system-notice-badge {
+  display: inline-block;
+  margin: var(--spacing-sm) auto 0; /*margin-top keeps it away from meter */
+  padding: 0.25rem 0.75rem;
+  font-family: monospace, "Courier New", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.08);
+  border: 1px solid rgba(255, 77, 77, 0.4);
+  border-radius: 3px;
+  text-transform: uppercase;
+  animation: noticePulse 2s infinite ease-in-out;
+}
+
+/* glow and pulse for the system warning*/
+@keyframes noticePulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+    box-shadow: 0 0 2px rgba(255, 77, 77, 0.1);
+    border-color: rgba(255, 77, 77, 0.3);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.01); /* Very subtle growth */
+    box-shadow: 0 0 6px rgba(255, 77, 77, 0.35); /* Soft, tight glow */
+    border-color: rgba(255, 77, 77, 0.7);
+  }
+}
+
+/* chat area - SCROLLS INTERNALLY between header and input */
 .chat {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    overflow-y: auto;
-    padding: var(--spacing-md);
-    gap: var(--spacing-sm);
-    min-height: 0;
-    overflow-y: auto;
-    scroll-behavior: smooth;
+  flex: 1; /*takes up all available middle space */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* internal scrollbar appears only here when chat gets long - NOT external for the whole webpage*/
+  padding: var(--spacing-md);
+  gap: var(--spacing-sm);
+  scroll-behavior: smooth;
 }
 
 /* messages */
 .msg {
-    max-width: 78%;
-    padding: 0.75rem 1rem;
-    border-radius: var(--radius);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    word-wrap: break-word;
-    animation: messageIn 0.35s ease;
+  max-width: 78%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  word-wrap: break-word;
+  animation: messageIn 0.35s ease;
 }
 
 @keyframes messageIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .msg.user {
-    align-self: flex-end;
-    background: var(--user-bubble-warm);
-    color: #fff;
-    border-bottom-right-radius: 0.35rem;
-    transition: background var(--transition-speed) ease;
+  align-self: flex-end;
+  background: var(--user-bubble-warm);
+  color: #fff;
+  border-bottom-right-radius: 0.35rem;
+  transition: background var(--transition-speed) ease;
 }
 
 .msg.ai {
-    align-self: flex-start;
-    background: var(--ai-bubble-warm);
-    color: var(--text-warm);
-    border: 1px solid rgba(0,0,0,0.04);
-    border-bottom-left-radius: 0.35rem;
-    transition: background var(--transition-speed) ease,
-                color var(--transition-speed) ease;
+  align-self: flex-start;
+  background: var(--ai-bubble-warm);
+  color: var(--text-warm);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-bottom-left-radius: 0.35rem;
+  transition:
+    background var(--transition-speed) ease,
+    color var(--transition-speed) ease;
 }
 
 /* msg colour relative to phase */
-.app.phase-breaking .msg.user { background: var(--user-bubble-breaking); }
-.app.phase-breaking .msg.ai { background: var(--ai-bubble-breaking); color: var(--text-breaking); }
+.app.phase-breaking .msg.user {
+  background: var(--user-bubble-breaking);
+}
+.app.phase-breaking .msg.ai {
+  background: var(--ai-bubble-breaking);
+  color: var(--text-breaking);
+}
 
-.app.phase-hollow .msg.user { background: var(--user-bubble-hollow); color: var(--text-hollow); }
-.app.phase-hollow .msg.ai { background: var(--ai-bubble-hollow); color: var(--text-hollow); border-color: rgba(0,0,0,0.06); }
+.app.phase-hollow .msg.user {
+  background: var(--user-bubble-hollow);
+  color: var(--text-hollow);
+}
+.app.phase-hollow .msg.ai {
+  background: var(--ai-bubble-hollow);
+  color: var(--text-hollow);
+  border-color: rgba(0, 0, 0, 0.06);
+}
 
-.app.phase-reflection .msg.user { background: var(--user-bubble-hollow); color: var(--text-hollow); }
-.app.phase-reflection .msg.ai { background: var(--ai-bubble-hollow); color: var(--text-hollow); }
+.app.phase-reflection .msg.user {
+  background: var(--user-bubble-hollow);
+  color: var(--text-hollow);
+}
+.app.phase-reflection .msg.ai {
+  background: var(--ai-bubble-hollow);
+  color: var(--text-hollow);
+}
+
+/* ERROR banner area */
+.system-error-banner {
+  padding: 0.75rem 1rem;
+  background: rgba(224, 123, 57, 0.15);
+  border: 1px solid var(--accent-warm);
+  border-radius: var(--radius);
+  text-align: center;
+  margin: 0 var(--spacing-md) var(--spacing-sm);
+  font-size: 0.9rem;
+}
+
+.system-error-banner p {
+  margin-bottom: 0.5rem;
+}
+
+.retry-btn {
+  background: var(--accent-warm);
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.85srem;
+  font-weight: 500;
+}
+
+.retry-btn:hover {
+  filter: brightness(1.08);
+}
 
 /* input\texbox area */
 .input-area {
-    padding: var(--spacing-md);
-    border-top: 1px solid rgba(0,0,0,0.04);
-    flex-shrink: 0;
-    background: inherit;
+  padding: var(--spacing-md);
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  flex-shrink: 0; /* makes surethe input box never shrinks or gets pushed off screen */
+  background: inherit;
 }
-
 .input-area form {
-    display: flex;
-    gap: var(--spacing-sm);
-    align-items: flex-end;
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: flex-end;
 }
 
 /* Textarea instead of input */
 textarea::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 textarea {
-    flex: 1;
-    background: rgba(255,255,255,0.7);
-    border: 1px solid rgba(0,0,0,0.06);
-    color: var(--text-warm);
-    padding: 0.75rem 1rem;
-    border-radius: var(--radius);
-    outline: none;
-    font-family: inherit;
-    font-size: 0.95rem;
-    resize: none;
-    min-height: 2.75rem;
-    max-height: 7.5rem;
-    line-height: 1.4;
-    transition: background 0.2s ease, border-color 0.2s ease;
-    overflow-y: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--text-warm);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  outline: none;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: none;
+  min-height: 2.75rem;
+  max-height: 7.5rem;
+  line-height: 1.4;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 textarea:focus {
-    border-color: var(--accent-warm);
-    background: rgba(255,255,255,0.95);
+  border-color: var(--accent-warm);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 textarea::placeholder {
-    color: rgba(0,0,0,0.3);
+  color: rgba(0, 0, 0, 0.3);
 }
 
 textarea:disabled {
-    background: rgba(0,0,0,0.02);
-    color: rgba(0,0,0,0.2);
-    cursor: not-allowed;
+  background: rgba(0, 0, 0, 0.02);
+  color: rgba(0, 0, 0, 0.2);
+  cursor: not-allowed;
 }
 
 button[type="submit"] {
-    background: var(--accent-warm);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.25rem;
-    border-radius: var(--radius);
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: background var(--transition-speed) ease, filter 0.2s ease;
-    height: 2.75rem;
+  background: var(--accent-warm);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition:
+    background var(--transition-speed) ease,
+    filter 0.2s ease;
+  height: 2.75rem;
 }
 
 button[type="submit"]:hover:not(:disabled) {
-    filter: brightness(1.08);
+  filter: brightness(1.08);
 }
 
 button[type="submit"]:disabled {
-    background: #ccc;
-    color: #888;
-    cursor: not-allowed;
-    opacity: 0.6;
+  background: #ccc;
+  color: #888;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
-.app.phase-breaking button[type="submit"] { background: var(--accent-breaking); }
-.app.phase-hollow button[type="submit"] { background: var(--accent-hollow); }
-
-/* reflection */
-.reflection {
-    padding: var(--spacing-lg) var(--spacing-md);
-    text-align: center;
-    animation: fadeIn 0.8s ease;
-    color: #bbb;
+.app.phase-breaking button[type="submit"] {
+  background: var(--accent-breaking);
+}
+.app.phase-hollow button[type="submit"] {
+  background: var(--accent-hollow);
 }
 
-.reflection p {
-    margin-bottom: var(--spacing-md);
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    max-width: 25rem;
-    margin-left: auto;
-    margin-right: auto;
-    color: #ddd;
+/* keyframe glitch for hollowphase*/
+@keyframes hollowFlicker {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-.reflection .resources {
-    margin-top: var(--spacing-lg);
-    padding-top: var(--spacing-md);
-    border-top: 0.0625rem solid rgba(255,255,255,0.08);
-    font-style: normal;
-    color: #aaa;
+.app.phase-hollow {
+  animation: hollowFlicker 0.4s ease-in-out;
 }
 
-.reflection .resources p {
-    font-style: italic;
-    font-size: 0.95rem;
-    color: #ccc;
+/* reflection, add padding-top so text starts cleanly below the header*/
+.reflection-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Start from top so text is never hidden */
+  overflow-y: auto;
+  padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-xl);
+  text-align: center;
+  gap: var(--spacing-sm);
 }
 
-.reflection small {
-    display: block;
-    margin-top: var(--spacing-md);
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #888;
+.reflection-screen p {
+  font-size: 1.1rem;
+  font-style: italic;
+  opacity: 0.85;
+  max-width: 600px;
 }
 
-.reflection ul {
-    list-style: none;
-    padding: 0;
-    margin-top: var(--spacing-sm);
+.reflection-screen .resources {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-lg);
+  border: 1px dashed rgba(255, 107, 107, 0.4);
+  border-radius: 8px;
+  background: rgba(255, 107, 107, 0.02);
+  text-align: left;
+  max-width: 550px;
+  width: 100%;
 }
 
-.reflection li {
-    margin: 0.5rem 0;
-    font-size: 0.9rem;
-    color: #bbb;
+.reflection-screen ul {
+  margin-top: var(--spacing-sm);
+  padding-left: 1.2rem;
+}
+
+.reflection-screen li {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
 }
 
 /* Confirmation box, after 'start over' is clicked */
 .start-over-btn {
-    margin-top: var(--spacing-lg);
-    background: transparent;
-    color: #ccc;
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 1rem 3rem;
-    border-radius: var(--radius);
-    cursor: pointer;
-    font-size: 1rem;
-    letter-spacing: 0.02em;
-    transition: all 0.3s ease;
+  margin-top: var(--spacing-lg);
+  background: transparent;
+  color: #ccc;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 3rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
 }
 
 .start-over-btn:hover {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.35);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
 /* Confirm dialog buttons */
 .confirm-dialog button {
-    margin: 0 0.5rem;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #bbb;
-    padding: 0.75rem 2rem;
-    border-radius: var(--radius);
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
+  margin: 0 0.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #bbb;
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
 }
 
 .confirm-dialog button:hover {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.35);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
 /* Reflection phase overrides for input area */
 .app.phase-reflection textarea {
-  background: rgba(255,255,255,0.04);
-  border-color: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
   color: #666;
 }
 
 .app.phase-reflection textarea::placeholder {
-  color: rgba(255,255,255,0.25);
+  color: rgba(255, 255, 255, 0.25);
 }
 
 .app.phase-reflection button[type="submit"]:disabled {
