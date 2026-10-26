@@ -317,9 +317,9 @@ function App() {
                             If you're looking for connection:
                         </small>
                         <ul>
-                            <li>Discord communities around things you like</li>
-                            <li>Local meetups and hobby groups</li>
-                            <li>Counselling services in your area</li>
+                            <li>Discord communities around things you like: kpop and anime</li>
+                            <li>Local meetups and hobby groups: Adventure and dinner club on meetup</li>
+                            <li>Counselling services in your area: Netcare Parklane, Netcare Akeso</li>
                         </ul>
                     </div>   
                 </div>
